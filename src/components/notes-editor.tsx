@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Textarea } from '@/components/ui/textarea';
 import { getOverride, setOverride } from '@/lib/storage';
 
 export function NotesEditor({ date }: { date: string }) {
@@ -13,10 +12,9 @@ export function NotesEditor({ date }: { date: string }) {
   useEffect(() => {
     let cancelled = false;
     getOverride(date).then((o) => {
-      if (!cancelled) {
-        setValue(o?.note ?? '');
-        setLoaded(true);
-      }
+      if (cancelled) return;
+      setValue(o?.note ?? '');
+      setLoaded(true);
     });
     return () => {
       cancelled = true;
@@ -34,25 +32,27 @@ export function NotesEditor({ date }: { date: string }) {
   }
 
   if (!loaded) {
-    return <div className="text-xs text-slate-500">Loading notes…</div>;
+    return <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-fg-dim)]">Loading…</div>;
   }
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <label className="text-[10px] uppercase tracking-wider text-slate-400">Notes</label>
+        <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-fg-muted)]">
+          // Log entry
+        </label>
         {savedAt && (
-          <span className="text-[10px] text-slate-500">
-            Saved {new Date(savedAt).toLocaleTimeString()}
+          <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-signal-go)]">
+            ✓ {new Date(savedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
         )}
       </div>
-      <Textarea
+      <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="How did it feel? Anything to remember…"
+        placeholder="How did it feel? What broke? What worked?"
         rows={4}
-        className="resize-none border-slate-800 bg-slate-900"
+        className="w-full resize-none border-l-2 border-[var(--color-line-strong)] bg-[var(--color-surface-2)] px-3 py-2.5 font-mono text-[13px] leading-relaxed text-[var(--color-fg)] outline-none placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)]"
       />
     </div>
   );

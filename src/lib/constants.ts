@@ -7,19 +7,20 @@ export const BASELINE_WINDOW = {
   end: '2026-05-17',
 } as const;
 
+export const TRAINING_TOTAL_DAYS = 129;
+
 export type SessionColor = {
-  bg: string;
-  text: string;
-  border: string;
   label: string;
+  color: string;
+  short: string;
 };
 
 export const SESSION_COLORS: Record<string, SessionColor> = {
-  run: { bg: 'bg-blue-500', text: 'text-blue-500', border: 'border-l-blue-500', label: 'Run' },
-  station: { bg: 'bg-emerald-500', text: 'text-emerald-500', border: 'border-l-emerald-500', label: 'Station' },
-  strength: { bg: 'bg-amber-500', text: 'text-amber-500', border: 'border-l-amber-500', label: 'Strength' },
-  'row-ski': { bg: 'bg-violet-500', text: 'text-violet-500', border: 'border-l-violet-500', label: 'Row/Ski' },
-  rest: { bg: 'bg-slate-400', text: 'text-slate-400', border: 'border-l-slate-400', label: 'Rest' },
-  race: { bg: 'bg-red-500', text: 'text-red-500', border: 'border-l-red-500', label: 'RACE' },
-  baseline: { bg: 'bg-cyan-500', text: 'text-cyan-500', border: 'border-l-cyan-500', label: 'Baseline' },
+  run:       { label: 'Run',       color: '#38bdf8', short: 'RUN' },
+  station:   { label: 'Station',   color: '#34d399', short: 'STN' },
+  strength:  { label: 'Strength',  color: '#fbbf24', short: 'STR' },
+  'row-ski': { label: 'Row/Ski',   color: '#c084fc', short: 'RS' },
+  rest:      { label: 'Rest',      color: '#6b7280', short: 'REST' },
+  race:      { label: 'Race',      color: '#ff3d00', short: 'RACE' },
+  baseline:  { label: 'Baseline',  color: '#22d3ee', short: 'BASE' },
 };

@@ -16,7 +16,9 @@ export default function TodayPage() {
 
   if (!date) {
     return (
-      <div className="p-4 text-sm text-slate-500">Loading today…</div>
+      <div className="p-6 font-mono text-[10px] uppercase tracking-widest text-[var(--color-fg-dim)]">
+        Loading today…
+      </div>
     );
   }
 
@@ -27,26 +29,42 @@ export default function TodayPage() {
   return (
     <div className="space-y-4 p-4">
       {session ? <SessionCard session={session} /> : <NoSession date={date} />}
-      <div className="flex justify-between text-sm">
-        <Link href={`/day/${prev}`} className="text-slate-400 hover:text-slate-200">
-          ← Yesterday
+      <nav className="grid grid-cols-2 gap-2">
+        <Link
+          href={`/day/${prev}`}
+          className="border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-fg-muted)] hover:border-[var(--color-line-strong)] hover:text-[var(--color-fg)]"
+        >
+          <div className="text-[9px] text-[var(--color-fg-dim)]">← Yesterday</div>
+          <div className="font-display mt-0.5 text-sm font-bold uppercase text-[var(--color-fg)]">
+            {format(parseISO(prev), 'EEE d MMM')}
+          </div>
         </Link>
-        <Link href={`/day/${next}`} className="text-slate-400 hover:text-slate-200">
-          Tomorrow →
+        <Link
+          href={`/day/${next}`}
+          className="border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-3 text-right font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-fg-muted)] hover:border-[var(--color-line-strong)] hover:text-[var(--color-fg)]"
+        >
+          <div className="text-[9px] text-[var(--color-fg-dim)]">Tomorrow →</div>
+          <div className="font-display mt-0.5 text-sm font-bold uppercase text-[var(--color-fg)]">
+            {format(parseISO(next), 'EEE d MMM')}
+          </div>
         </Link>
-      </div>
+      </nav>
     </div>
   );
 }
 
 function NoSession({ date }: { date: string }) {
   return (
-    <div className="rounded-md border border-slate-800 bg-slate-900 p-6 text-center text-slate-400">
-      <div className="mb-1 text-xs uppercase tracking-wider">
-        {format(parseISO(date), 'EEEE, d MMM yyyy')}
+    <div className="border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface)] p-8 text-center">
+      <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-fg-muted)]">
+        {format(parseISO(date), 'EEEE · d MMM yyyy')}
       </div>
-      <div className="text-lg">No session scheduled.</div>
-      <div className="mt-2 text-xs">Training runs 15 May – 20 Sep 2026.</div>
+      <div className="font-display mt-3 text-2xl font-black uppercase text-[var(--color-fg)]">
+        No session
+      </div>
+      <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-[var(--color-fg-dim)]">
+        Training window: 15 May → 20 Sep 2026
+      </div>
     </div>
   );
 }

@@ -5,18 +5,21 @@ import { cn } from '@/lib/utils';
 export function SessionBadge({
   type,
   className,
+  size = 'sm',
 }: {
   type: SessionType;
   className?: string;
+  size?: 'sm' | 'lg';
 }) {
   const c = SESSION_COLORS[type];
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white',
-        c.bg,
+        'bib',
+        size === 'lg' ? 'text-[12px] py-1.5 px-2.5' : 'text-[10px]',
         className,
       )}
+      style={{ background: c.color, color: c.color === '#fbbf24' || c.color === '#22d3ee' ? '#0a0a0a' : '#ffffff' }}
     >
       {c.label}
     </span>

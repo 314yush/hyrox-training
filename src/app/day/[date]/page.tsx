@@ -11,7 +11,11 @@ export default async function DayPage({
   const { date } = await params;
 
   if (!isValid(parseISO(date))) {
-    return <div className="p-4 text-slate-400">Invalid date.</div>;
+    return (
+      <div className="p-6 font-mono text-[10px] uppercase tracking-widest text-[var(--color-signal-warn)]">
+        Invalid date
+      </div>
+    );
   }
 
   const session = getSession(date);
@@ -23,21 +27,36 @@ export default async function DayPage({
       {session ? (
         <SessionCard session={session} />
       ) : (
-        <div className="rounded-md border border-slate-800 bg-slate-900 p-6 text-center text-slate-400">
-          <div className="mb-1 text-xs uppercase tracking-wider">
-            {format(parseISO(date), 'EEEE, d MMM yyyy')}
+        <div className="border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface)] p-8 text-center">
+          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-fg-muted)]">
+            {format(parseISO(date), 'EEEE · d MMM yyyy')}
           </div>
-          <div>No session scheduled.</div>
+          <div className="font-display mt-3 text-2xl font-black uppercase text-[var(--color-fg)]">
+            No session
+          </div>
         </div>
       )}
-      <div className="flex justify-between text-sm">
-        <Link href={`/day/${prev}`} className="text-slate-400 hover:text-slate-200">
-          ← Previous
+
+      <nav className="grid grid-cols-2 gap-2">
+        <Link
+          href={`/day/${prev}`}
+          className="border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-fg-muted)] hover:border-[var(--color-line-strong)] hover:text-[var(--color-fg)]"
+        >
+          <div className="text-[9px] text-[var(--color-fg-dim)]">← Prev</div>
+          <div className="font-display mt-0.5 text-sm font-bold uppercase text-[var(--color-fg)]">
+            {format(parseISO(prev), 'EEE d MMM')}
+          </div>
         </Link>
-        <Link href={`/day/${next}`} className="text-slate-400 hover:text-slate-200">
-          Next →
+        <Link
+          href={`/day/${next}`}
+          className="border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-3 text-right font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-fg-muted)] hover:border-[var(--color-line-strong)] hover:text-[var(--color-fg)]"
+        >
+          <div className="text-[9px] text-[var(--color-fg-dim)]">Next →</div>
+          <div className="font-display mt-0.5 text-sm font-bold uppercase text-[var(--color-fg)]">
+            {format(parseISO(next), 'EEE d MMM')}
+          </div>
         </Link>
-      </div>
+      </nav>
     </div>
   );
 }

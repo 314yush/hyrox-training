@@ -1,9 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { getOverride, setOverride } from '@/lib/storage';
 
 export function OverrideEditor({
@@ -65,46 +62,57 @@ export function OverrideEditor({
 
   if (!open) {
     return (
-      <Button
-        variant="outline"
-        size="sm"
+      <button
         onClick={() => {
           setOpen(true);
           if (!title) setTitle(defaultTitle);
           if (!details) setDetails(defaultDetails);
         }}
+        className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-fg-muted)] underline decoration-dotted underline-offset-4 hover:text-[var(--color-accent)]"
       >
-        {hasOverride ? 'Edit custom session' : 'Customise this session'}
-      </Button>
+        {hasOverride ? '◆ Edit override' : '+ Override session'}
+      </button>
     );
   }
 
   return (
-    <div className="space-y-2 rounded-md border border-white/10 p-3">
-      <Input
+    <div className="space-y-3 border border-dashed border-[var(--color-line-strong)] bg-[var(--color-surface-2)] p-3">
+      <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-accent)]">
+        // Override
+      </div>
+      <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Session title"
-        className="border-slate-800 bg-slate-900"
+        className="w-full border-b border-[var(--color-line-strong)] bg-transparent pb-1.5 font-display text-lg font-bold uppercase tracking-tight text-[var(--color-fg)] outline-none focus:border-[var(--color-accent)]"
       />
-      <Textarea
+      <textarea
         value={details}
         onChange={(e) => setDetails(e.target.value)}
         rows={6}
         placeholder="Session details"
-        className="border-slate-800 bg-slate-900"
+        className="w-full resize-none bg-transparent font-mono text-[13px] leading-relaxed text-[var(--color-fg)] outline-none"
       />
-      <div className="flex flex-wrap gap-2">
-        <Button size="sm" onClick={save}>
+      <div className="flex flex-wrap gap-2 pt-1">
+        <button
+          onClick={save}
+          className="bib bg-[var(--color-accent)] text-white hover:opacity-90"
+        >
           Save
-        </Button>
-        <Button variant="ghost" size="sm" onClick={() => setOpen(false)}>
+        </button>
+        <button
+          onClick={() => setOpen(false)}
+          className="bib bg-[var(--color-surface)] text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
+        >
           Cancel
-        </Button>
+        </button>
         {hasOverride && (
-          <Button variant="destructive" size="sm" onClick={reset}>
-            Reset to plan default
-          </Button>
+          <button
+            onClick={reset}
+            className="bib bg-transparent text-[var(--color-signal-warn)] underline decoration-dotted underline-offset-4 hover:opacity-90"
+          >
+            Reset
+          </button>
         )}
       </div>
     </div>

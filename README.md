@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HYROX Tracker
 
-## Getting Started
+Day-by-day training plan for **HYROX Mumbai — 20 Sep 2026 — sub 1:15**.
+Mobile-first PWA. Local-first storage with optional Neon Postgres sync.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Optional: Neon Postgres sync
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Without a database, the app works offline-only — your notes, baselines, and
+overrides stay in your browser's IndexedDB. Add a Neon connection to sync
+across devices.
 
-## Learn More
+### 1. Create a Neon project
+1. Sign up at https://console.neon.tech (free tier is plenty)
+2. Create a project
+3. Copy the connection string from **Connection Details**
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Configure env
+```bash
+cp .env.local.example .env.local
+# paste your DATABASE_URL into .env.local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Initialise the table
+```bash
+node --env-file=.env.local scripts/init-db.mjs
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Restart the dev server
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+A small "◆ synced" indicator appears top-left on first load when the API is
+reachable. Without a DB, the app stays IDB-only (silent fallback).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` — Next.js dev server (Turbopack)
+- `npm run build` — production build
+- `npm test` — vitest unit tests
+- `node --env-file=.env.local scripts/init-db.mjs` — create the `hyrox_data` table
+
+## Stack
+
+- Next.js 16 App Router
+- Tailwind CSS v4 + shadcn/ui primitives
+- IndexedDB via `idb-keyval` (instant local reads, offline support)
+- Neon Postgres (optional) via `@neondatabase/serverless`
+- Big Shoulders Display + JetBrains Mono + Manrope (Google Fonts)

@@ -132,11 +132,12 @@ Sled push/pull — light load, learn stance and foot drive.`,
     s(
       d(2),
       'phase-1',
-      'row-ski',
-      'Row/Ski + Easy Run',
-      `Ski erg or row: 3×3 min at 70% effort, 90 sec rest between.
-5 km easy steady-state run.`,
-      'Run at a pace you could sustain for an hour.',
+      'station',
+      'Jumps Day — Intro',
+      `Box jumps: 3×5 (knee height, soft quiet landings).
+Broad jumps: 3×5 (max distance, stick the landing).
+Pogo hops: 2×10 (stiff ankles, fast contact).`,
+      'Power, not exhaustion. Rest fully between sets.',
     ),
     s(
       d(3),
@@ -208,11 +209,12 @@ Burpee broad jumps: 3×8 reps.`,
     s(
       d(2),
       'phase-2',
-      'row-ski',
-      'Tempo + Ski Erg',
-      `20 min tempo run.
-Ski erg: 4×2 min at race effort, 90 sec rest.`,
-      'Sustainable pace, not all-out.',
+      'station',
+      'Jumps Day — Build',
+      `Box jumps: 4×8 (raise the box if last week felt easy).
+Broad jumps: 3×6 (explode horizontally).
+Burpee broad jumps: 3×8 (full chest down, explosive push-up).`,
+      'Add volume. Keep landings clean.',
     ),
     s(
       d(3),
@@ -284,11 +286,12 @@ Burpee broad jumps: 3×10 reps.`,
     s(
       d(2),
       'phase-3',
-      'run',
-      '8 km Key Run',
-      `8 km steady at 5:00–5:15/km target pace.
-Pace is more important than effort. Don't go faster.`,
-      'This is the bedrock workout. Trust the pace.',
+      'station',
+      'Jumps Day — Race Distance',
+      `Burpee broad jumps: 80 m × 2 (race distance), 2 min rest between.
+Box jumps: 3×10 (explosive, full hip extension).
+Depth jumps: 3×5 (step off box, rebound vertical — advanced only).`,
+      'These reps mirror race-day fatigue. Practice form under stress.',
     ),
     s(
       d(3),
@@ -341,7 +344,7 @@ function phase4PeakWeek(weekStart: string): Session[] {
   return [
     s(d(0), 'phase-4', 'run', '3 km Goal Race Pace', '3 km at goal race pace.', 'Sharpening, not building.'),
     s(d(1), 'phase-4', 'station', '2 Key Stations', 'Pick 2 stations at race weight — perfect reps, full rest between sets.', 'Quality over quantity.'),
-    s(d(2), 'phase-4', 'run', '6 km Run', '6 km at 5:00/km target pace.', 'Smooth, sustainable.'),
+    s(d(2), 'phase-4', 'station', 'Jumps Day — Sharp', 'Box jumps: 3×5 (max height, full reset between).\nBurpee broad jumps: 3×5 race-quality reps.\nKeep total volume low — sharpening, not building.', 'Explosive intent. Recover fully between sets.'),
     s(d(3), 'phase-4', 'station', 'Wall Ball + Easy Row', 'Wall ball 2×15 + row 10 min easy.', 'Keep things short.'),
     s(d(4), 'phase-4', 'rest', 'Rest / Walk', 'Rest or 20 min easy walk.', 'Legs should feel fresh.'),
     s(d(5), 'phase-4', 'run', '2 km + Strides', '2 km with 4×100 m strides at the end.', 'Activation, not exhaustion.'),
@@ -354,7 +357,7 @@ function phase4DeloadWeek(weekStart: string): Session[] {
   return [
     s(d(0), 'phase-4', 'run', '2 km Easy', '2 km easy run.', 'Cut volume. Legs need freshness.'),
     s(d(1), 'phase-4', 'station', 'Walk-through Stations', 'Walk-through 2 stations — technique only, no effort.', 'Refresh the movements.'),
-    s(d(2), 'phase-4', 'run', '4 km Easy', '4 km easy run.', 'Movement, not work.'),
+    s(d(2), 'phase-4', 'station', 'Jumps Day — Light', 'Box jumps: 2×5 easy (no max height).\nNo burpee broad jumps this week — let the legs recover.', 'Movement, not work.'),
     s(d(3), 'phase-4', 'station', 'Wall Ball + Easy Row', 'Wall ball 2×15 + row 10 min easy.', 'Light touch.'),
     s(d(4), 'phase-4', 'rest', 'Rest', 'Rest day.', ''),
     s(d(5), 'phase-4', 'run', '2 km + Strides', '2 km with 4×100 m strides.', 'Sharp legs.'),

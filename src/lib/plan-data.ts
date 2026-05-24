@@ -254,11 +254,12 @@ Sled pull: ${p.friSledSets}×${p.friSledMeters} m.`,
       d(5),
       'phase-1',
       'run',
-      'Run — 30 min / ~5 km',
-      `30 min easy-to-moderate run — or ~5 km if you prefer distance.
+      'Run — 30 min',
+      `30 min easy continuous run at a conversational pace.
+Distance is incidental — could be 3 km, could be 4.5 km. Both fine.
 Safe shoes only.
 Optional: 20–30 min badminton after if legs feel good.`,
-      'If yesterday hammered you, keep this conversational.',
+      'Time-on-feet beats hitting a distance. If you cannot talk, slow down.',
     ),
     s(
       d(6),

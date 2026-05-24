@@ -108,7 +108,8 @@ Burpee broad jumps — 5 reps, note how the movement feels.`,
   ),
 ];
 
-function phase1Week(weekStart: string, longMins: number): Session[] {
+// Week 1: easing into the work — keep walk/run intervals, light loads.
+function phase1IntroWeek(weekStart: string): Session[] {
   const d = (offset: number) => format(addDays(parseISO(weekStart), offset), 'yyyy-MM-dd');
   return [
     s(
@@ -127,7 +128,7 @@ function phase1Week(weekStart: string, longMins: number): Session[] {
       'Lower Body + Sled',
       `Lower body strength session.
 Sled push/pull — light load, learn stance and foot drive.`,
-      'Weight is irrelevant this phase. Technique is everything.',
+      'Weight is irrelevant this week. Technique is everything.',
     ),
     s(
       d(2),
@@ -161,10 +162,10 @@ Sandbag lunge intro: bodyweight or 10 kg (upright torso, full knee extension, 10
       d(5),
       'phase-1',
       'run',
-      `Long Run — ${longMins} min`,
-      `Easy continuous run for ${longMins} minutes.
+      'Long Run — 30 min',
+      `Easy continuous run for 30 minutes.
 Pace: comfortable, conversational.`,
-      'Add 5 min each week. If it feels hard, slow down.',
+      'If it feels hard, slow down. We are building, not racing.',
     ),
     s(
       d(6),
@@ -178,11 +179,145 @@ Mobility: hip flexors, calves, thoracic spine (10 min foam roll minimum).`,
   ];
 }
 
+// Weeks 2–4: HYROX-flavoured base building, progressively heavier.
+type Phase1BuildParams = {
+  weekIndex: 2 | 3 | 4;
+  monRunMin: number;
+  tueLungeSets: number;
+  tueLungeSteps: number;
+  wedWallBallSets: number;
+  wedWallBallReps: number;
+  wedCarrySets: number;
+  wedCarryMeters: number;
+  thuRounds: number;
+  thuBurpees: number;
+  friSledSets: number;
+  friSledMeters: number;
+  satRunMin: number;
+};
+
+function phase1BuildWeek(weekStart: string, p: Phase1BuildParams): Session[] {
+  const d = (offset: number) => format(addDays(parseISO(weekStart), offset), 'yyyy-MM-dd');
+  return [
+    s(
+      d(0),
+      'phase-1',
+      'strength',
+      'Upper + Short Run',
+      `Upper strength: pull, push, shoulders, arms, core (3–4 sets each).
+Run: ${p.monRunMin} min — first two-thirds easy, last 3–5 min push the pace.`,
+      'Hard but controlled. Form holds, breath stays.',
+    ),
+    s(
+      d(1),
+      'phase-1',
+      'strength',
+      'Legs + Sandbag Lunges',
+      `Squat or leg press, RDL, lunges/step-ups, leg machine finisher.
+Sandbag lunges: ${p.tueLungeSets}×${p.tueLungeSteps} steps (upright torso, full knee extension).`,
+      'Train the legs hard now. Race day lunges will thank you.',
+    ),
+    s(
+      d(2),
+      'phase-1',
+      'station',
+      `Jumps + Wall Balls + Carry + Core`,
+      `Squat jumps: 3×5.
+Broad jumps: 3×5.
+Wall balls: ${p.wedWallBallSets}×${p.wedWallBallReps}.
+Farmer's carry: ${p.wedCarrySets}×${p.wedCarryMeters} m.
+Core: 3–4×30–45 sec (plank, hollow hold, dead bug — pick two).`,
+      'HYROX in one session. Rest enough to keep form sharp.',
+    ),
+    s(
+      d(3),
+      'phase-1',
+      'row-ski',
+      `SkiErg + Row + Burpees — ${p.thuRounds} rounds`,
+      `${p.thuRounds} rounds, 2–3 min rest between:
+  • 250 m SkiErg
+  • 250 m Row
+  • ${p.thuBurpees} burpee broad jumps`,
+      'Moderate effort — finish each round strong, not destroyed.',
+    ),
+    s(
+      d(4),
+      'phase-1',
+      'strength',
+      'Upper/Arms + Sleds',
+      `Upper / arms strength (curls, tricep work, accessory push/pull).
+Sled push: ${p.friSledSets}×${p.friSledMeters} m.
+Sled pull: ${p.friSledSets}×${p.friSledMeters} m.`,
+      'Moderate. Drive low on the push, walk back as recovery.',
+    ),
+    s(
+      d(5),
+      'phase-1',
+      'run',
+      `Run — ${p.satRunMin} min`,
+      `${p.satRunMin} min easy-to-moderate run (safe shoes only).
+Optional: 20–30 min badminton after if legs feel good.`,
+      'If yesterday hammered you, keep this conversational.',
+    ),
+    s(
+      d(6),
+      'phase-1',
+      'rest',
+      'Rest / Active Recovery',
+      `Full rest — or 20–30 min very easy walk + light mobility (hips, calves, T-spine).
+No real training today.`,
+      'Sleep is your highest-leverage session this week.',
+    ),
+  ];
+}
+
 const PHASE_1_SESSIONS: Session[] = [
-  ...phase1Week('2026-05-18', 30),
-  ...phase1Week('2026-05-25', 35),
-  ...phase1Week('2026-06-01', 40),
-  ...phase1Week('2026-06-08', 45),
+  ...phase1IntroWeek('2026-05-18'),
+  ...phase1BuildWeek('2026-05-25', {
+    weekIndex: 2,
+    monRunMin: 10,
+    tueLungeSets: 3,
+    tueLungeSteps: 20,
+    wedWallBallSets: 3,
+    wedWallBallReps: 10,
+    wedCarrySets: 3,
+    wedCarryMeters: 40,
+    thuRounds: 3,
+    thuBurpees: 8,
+    friSledSets: 3,
+    friSledMeters: 15,
+    satRunMin: 20,
+  }),
+  ...phase1BuildWeek('2026-06-01', {
+    weekIndex: 3,
+    monRunMin: 12,
+    tueLungeSets: 4,
+    tueLungeSteps: 25,
+    wedWallBallSets: 3,
+    wedWallBallReps: 12,
+    wedCarrySets: 3,
+    wedCarryMeters: 50,
+    thuRounds: 3,
+    thuBurpees: 9,
+    friSledSets: 3,
+    friSledMeters: 18,
+    satRunMin: 25,
+  }),
+  ...phase1BuildWeek('2026-06-08', {
+    weekIndex: 4,
+    monRunMin: 15,
+    tueLungeSets: 4,
+    tueLungeSteps: 30,
+    wedWallBallSets: 4,
+    wedWallBallReps: 15,
+    wedCarrySets: 4,
+    wedCarryMeters: 60,
+    thuRounds: 4,
+    thuBurpees: 10,
+    friSledSets: 4,
+    friSledMeters: 20,
+    satRunMin: 30,
+  }),
 ];
 
 function phase2Week(weekStart: string, longMins: number): Session[] {

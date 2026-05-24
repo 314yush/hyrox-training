@@ -180,9 +180,10 @@ Mobility: hip flexors, calves, thoracic spine (10 min foam roll minimum).`,
 }
 
 // Weeks 2–4: HYROX-flavoured base building, progressively heavier.
+// Runs are intentionally flat across weeks (Mon 20 min, Sat 30 min);
+// progressive overload sits in lunges, wall balls, carries, rounds, and sleds.
 type Phase1BuildParams = {
   weekIndex: 2 | 3 | 4;
-  monRunMin: number;
   tueLungeSets: number;
   tueLungeSteps: number;
   wedWallBallSets: number;
@@ -193,7 +194,6 @@ type Phase1BuildParams = {
   thuBurpees: number;
   friSledSets: number;
   friSledMeters: number;
-  satRunMin: number;
 };
 
 function phase1BuildWeek(weekStart: string, p: Phase1BuildParams): Session[] {
@@ -205,7 +205,7 @@ function phase1BuildWeek(weekStart: string, p: Phase1BuildParams): Session[] {
       'strength',
       'Upper + Short Run',
       `Upper strength: pull, push, shoulders, arms, core (3–4 sets each).
-Run: ${p.monRunMin} min — first two-thirds easy, last 3–5 min push the pace.`,
+Run: 20 min — first 13–15 min easy, last 5–7 min push the pace.`,
       'Hard but controlled. Form holds, breath stays.',
     ),
     s(
@@ -254,8 +254,9 @@ Sled pull: ${p.friSledSets}×${p.friSledMeters} m.`,
       d(5),
       'phase-1',
       'run',
-      `Run — ${p.satRunMin} min`,
-      `${p.satRunMin} min easy-to-moderate run (safe shoes only).
+      'Run — 30 min / ~5 km',
+      `30 min easy-to-moderate run — or ~5 km if you prefer distance.
+Safe shoes only.
 Optional: 20–30 min badminton after if legs feel good.`,
       'If yesterday hammered you, keep this conversational.',
     ),
@@ -275,7 +276,6 @@ const PHASE_1_SESSIONS: Session[] = [
   ...phase1IntroWeek('2026-05-18'),
   ...phase1BuildWeek('2026-05-25', {
     weekIndex: 2,
-    monRunMin: 10,
     tueLungeSets: 3,
     tueLungeSteps: 20,
     wedWallBallSets: 3,
@@ -286,11 +286,9 @@ const PHASE_1_SESSIONS: Session[] = [
     thuBurpees: 8,
     friSledSets: 3,
     friSledMeters: 15,
-    satRunMin: 20,
   }),
   ...phase1BuildWeek('2026-06-01', {
     weekIndex: 3,
-    monRunMin: 12,
     tueLungeSets: 4,
     tueLungeSteps: 25,
     wedWallBallSets: 3,
@@ -301,11 +299,9 @@ const PHASE_1_SESSIONS: Session[] = [
     thuBurpees: 9,
     friSledSets: 3,
     friSledMeters: 18,
-    satRunMin: 25,
   }),
   ...phase1BuildWeek('2026-06-08', {
     weekIndex: 4,
-    monRunMin: 15,
     tueLungeSets: 4,
     tueLungeSteps: 30,
     wedWallBallSets: 4,
@@ -316,7 +312,6 @@ const PHASE_1_SESSIONS: Session[] = [
     thuBurpees: 10,
     friSledSets: 4,
     friSledMeters: 20,
-    satRunMin: 30,
   }),
 ];
 

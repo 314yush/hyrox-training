@@ -1947,3 +1947,27 @@ git commit -m "chore: production deploy fixes" || echo "Nothing to commit"
 - Phase 1 starts 2026-05-18 (Mon) per dates.ts but original plan says 19 May. Adjusted in `plan-data.ts` and `dates.ts` to keep Mon–Sun week alignment. This is a one-day shift; user can manually note in Day 1.
 - 1×1 px PWA icons are placeholders. Replace before sharing publicly.
 - Service worker not implemented in v1 — PWA install works (manifest), but full offline is browser-cache only. If offline matters more, add Workbox in a follow-up.
+
+---
+
+## Block 1 Training Split
+
+Week structure: **Mon Upper A · Tue Jump · Wed easy run · Thu Lower · Fri Upper B · Sat quality/swim · Sun rest**
+
+### Upper A (Monday)
+
+**Warm-up**
+- Band pull-aparts
+- Scap pull-ups
+- Dead hangs
+
+**Bodyweight / calisthenics block**
+1. Weighted pull-ups
+2. Eccentric pull-ups (or another pulling movement)
+3. Dips (chest)
+4. Push-ups (chest)
+
+**Machine block**
+5. Lat pull-downs
+6. Chest press
+7. Chest flies

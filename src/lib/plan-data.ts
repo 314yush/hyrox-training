@@ -116,10 +116,22 @@ function phase1IntroWeek(weekStart: string): Session[] {
       d(0),
       'phase-1',
       'strength',
-      'Upper Body + Easy Run',
-      `Upper body strength session (push/pull, 3–4 exercises).
-30 min easy run: walk 2 min / run 3 min intervals.`,
-      'Never breathing hard. This is zone 2.',
+      'Upper A + Easy Run',
+      `Warm-up: band pull-aparts, scap pull-ups, dead hangs.
+
+Bodyweight / calisthenics:
+1. Weighted pull-ups
+2. Eccentric pull-ups (or another pulling movement)
+3. Dips (chest)
+4. Push-ups (chest)
+
+Machines:
+5. Lat pull-downs
+6. Chest press
+7. Chest flies
+
+Then: 30 min easy run — walk 2 min / run 3 min intervals.`,
+      'Never breathing hard on the run. This is zone 2.',
     ),
     s(
       d(1),
@@ -203,8 +215,20 @@ function phase1BuildWeek(weekStart: string, p: Phase1BuildParams): Session[] {
       d(0),
       'phase-1',
       'strength',
-      'Upper + Short Run',
-      `Upper strength: pull, push, shoulders, arms, core (3–4 sets each).
+      'Upper A + Short Run',
+      `Warm-up: band pull-aparts, scap pull-ups, dead hangs.
+
+Bodyweight / calisthenics:
+1. Weighted pull-ups
+2. Eccentric pull-ups (or another pulling movement)
+3. Dips (chest)
+4. Push-ups (chest)
+
+Machines:
+5. Lat pull-downs
+6. Chest press
+7. Chest flies
+
 Run: 20 min — first 13–15 min easy, last 5–7 min push the pace.`,
       'Hard but controlled. Form holds, breath stays.',
     ),
